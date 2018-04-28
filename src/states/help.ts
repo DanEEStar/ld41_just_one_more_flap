@@ -9,6 +9,10 @@ export default class Help extends Phaser.State {
         image.events.onInputDown.add(() => {
             this.game.state.start('title');
         });
+
+        window.gtag('event', 'show_help', {
+            'event_category': 'game'
+        });
     }
 
 }

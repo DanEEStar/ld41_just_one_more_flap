@@ -1,5 +1,4 @@
 import * as Assets from '../assets';
-import Music from '../utils/music';
 
 const SCREEN_WIDTH = 800;
 const SCREEN_HEIGHT = 600;
@@ -208,6 +207,12 @@ export default class GameState extends Phaser.State {
         //this.levelNumber = 8;
         this.cheatMode = false;
         console.log(levels.length);
+
+        window.gtag('event', 'start_level', {
+            'event_category': 'game',
+            'event_label': 'level' + this.levelNumber
+        });
+
     }
 
     preload() {
@@ -326,6 +331,11 @@ export default class GameState extends Phaser.State {
         cheatPseudoSprite.events.onInputDown.add(() => {
             console.log('cheat button pressed');
             this.cheatMode = true;
+
+            window.gtag('event', 'click_cheat_mode', {
+                'event_category': 'game',
+                'event_label': 'level' + this.levelNumber
+            });
         });
 
         const deleteJumpsSprite = this.add.sprite(0, 560);
@@ -375,6 +385,11 @@ export default class GameState extends Phaser.State {
         if(this.resetHero) {
             this.birdCollision(false);
             this.resetHero = false;
+
+            window.gtag('event', 'reset_hero', {
+                'event_category': 'game',
+                'event_label': 'level' + this.levelNumber
+            });
         }
 
         if(!this.gameOver) {

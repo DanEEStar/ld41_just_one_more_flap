@@ -31,6 +31,10 @@ export default class Win extends Phaser.State {
         if(!window.menuMusic.isPlaying) {
             window.menuMusic.loopFull(0.8);
         }
+
+        window.gtag('event', 'win_game', {
+            'event_category': 'game'
+        });
     }
 
     update() {
